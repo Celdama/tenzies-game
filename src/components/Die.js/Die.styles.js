@@ -6,7 +6,7 @@ export const DieFace = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: ${({ isHeld }) => (isHeld ? '#59E391' : 'white')};
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 

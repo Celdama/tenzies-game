@@ -39,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     .dice-container {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 24px;
       flex-wrap: wrap;
     }
 
