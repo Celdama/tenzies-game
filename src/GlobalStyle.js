@@ -22,12 +22,17 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    padding: 30px;
+    padding: 36px 30px;
     background-color: #0B2434;
   }
 
   .App {
-    background-color: white;
+    outline: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    background-color: #f5f5f5;
     border-radius: 5px;
     width: 360px;
     height: 379px;
