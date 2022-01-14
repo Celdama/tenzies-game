@@ -9,17 +9,19 @@ function App() {
     for (let i = 0; i < 10; i++) {
       newDice.push(Math.ceil(Math.random() * 6));
     }
+    console.log('rolling');
 
     return newDice;
   }
 
-  const dieElements = allDice.map((die, index) => {
-    return <Die key={index} number={die} />;
-  });
+  const diceElements = allDice.map((die, index) => (
+    <Die key={index} number={die} />
+  ));
 
   return (
     <main className='App'>
-      <div className='dies'>{dieElements}</div>
+      <div className='dice-container'>{diceElements}</div>
+      <button onClick={() => setAllDice(allNewDice())}>Roll</button>
     </main>
   );
 }
