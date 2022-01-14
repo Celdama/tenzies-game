@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Die from './components/Die.js';
 import { nanoid } from 'nanoid';
 
 function App() {
   const [dice, setDice] = useState(allNewDice());
+  const [tenzies, setTenzies] = useState(false);
+
+  useEffect(() => {
+    console.log('effect');
+  }, [dice]);
 
   function generateNewDie() {
     return {
@@ -49,6 +54,11 @@ function App() {
 
   return (
     <main className='App'>
+      <h1 className='title'>Tenzies</h1>
+      <p className='instructions'>
+        Roll until all dice are the same. Click each die to freeze it at its
+        current value between rolls.
+      </p>
       <div className='dice-container'>{diceElements}</div>
       <button onClick={rollDice}>Roll</button>
     </main>

@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Karla', sans-serif;
     background-color: palegoldenrod;
     height: 100vh;
   }
@@ -35,6 +35,18 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 5px;
     width: 410px;
     height: 429px;
+
+    .title {
+      font-size: 40px;
+      margin: 0;
+    }
+
+    .instructions {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      margin-top: 0;
+      text-align: center;
+    }
 
     .dice-container {
       display: flex;
