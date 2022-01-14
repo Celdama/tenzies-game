@@ -36,11 +36,16 @@ function App() {
   }
 
   function rollDice() {
-    setDice((oldDice) =>
-      oldDice.map((die) => {
-        return !die.isHeld ? generateNewDie() : die;
-      })
-    );
+    if (tenzies) {
+      setTenzies(false);
+      setDice(allNewDice());
+    } else {
+      setDice((oldDice) =>
+        oldDice.map((die) => {
+          return !die.isHeld ? generateNewDie() : die;
+        })
+      );
+    }
   }
 
   function holdDice(id) {
