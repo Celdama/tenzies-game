@@ -27,14 +27,19 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .App {
-    outline: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px;
     background-color: #f5f5f5;
     border-radius: 5px;
-    width: 360px;
-    height: 379px;
+    width: 410px;
+    height: 429px;
+
+    .dies {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
   }
 `;
