@@ -1,20 +1,19 @@
+import { useState } from 'react';
 import Die from './components/Die.js';
 
 function App() {
-  const allNewDice = () => {
-    const randomValues = [];
-    for (let i = 0; i < 10; i++) {
-      const randomInt = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+  const [allDice, setAllDice] = useState(allNewDice());
 
-      randomValues.push(randomInt);
+  function allNewDice() {
+    const newDice = [];
+    for (let i = 0; i < 10; i++) {
+      newDice.push(Math.ceil(Math.random() * 6));
     }
 
-    return randomValues;
-  };
+    return newDice;
+  }
 
-  const value = allNewDice();
-
-  const dieElements = value.map((die, index) => {
+  const dieElements = allDice.map((die, index) => {
     return <Die key={index} number={die} />;
   });
 
