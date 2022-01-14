@@ -5,40 +5,38 @@ import { nanoid } from 'nanoid';
 function App() {
   const [dice, setDice] = useState(allNewDice());
 
+  function generateNewDie() {
+    return {
+      id: nanoid(),
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+    };
+  }
+
   function allNewDice() {
     const newDice = [];
     for (let i = 0; i < 10; i++) {
-      newDice.push({
-        id: nanoid(),
-        value: Math.ceil(Math.random() * 6),
-        isHeld: false,
-      });
+      newDice.push(generateNewDie());
     }
 
     return newDice;
   }
 
-  const rollDice = () => {
+  function rollDice() {
     setDice((oldDice) =>
       oldDice.map((die) => {
-        return !die.isHeld
-          ? {
-              id: nanoid(),
-              value: Math.ceil(Math.random() * 6),
-              isHeld: false,
-            }
-          : die;
+        return !die.isHeld ? generateNewDie() : die;
       })
     );
-  };
+  }
 
-  const holdDice = (id) => {
+  function holdDice(id) {
     setDice((oldDice) =>
       oldDice.map((die) => {
         return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
       })
     );
-  };
+  }
 
   const diceElements = dice.map(({ id, value, isHeld }) => (
     <Die
