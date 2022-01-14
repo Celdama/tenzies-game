@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const EachDie = styled.div`
+export const DieFace = styled.div`
   width: 50px;
   height: 50px;
   display: flex;
@@ -8,5 +8,9 @@ export const EachDie = styled.div`
   justify-content: center;
   background-color: #fff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  border-radius: 10px;
+
+  h2 {
+    font-size: 2rem;
+  }
 `;

@@ -1,8 +1,12 @@
 import React from 'react';
-import { EachDie } from './Die.styles';
+import { DieFace } from './Die.styles';
 
 const Die = ({ number }) => {
-  return <EachDie>{number}</EachDie>;
+  return (
+    <DieFace>
+      <h2>{number}</h2>
+    </DieFace>
+  );
 };
 
 export default Die;
