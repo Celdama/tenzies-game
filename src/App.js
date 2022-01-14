@@ -19,7 +19,17 @@ function App() {
   }
 
   const rollDice = () => {
-    setDice(allNewDice());
+    setDice((oldDice) =>
+      oldDice.map((die) => {
+        return !die.isHeld
+          ? {
+              id: nanoid(),
+              value: Math.ceil(Math.random() * 6),
+              isHeld: false,
+            }
+          : die;
+      })
+    );
   };
 
   const holdDice = (id) => {
