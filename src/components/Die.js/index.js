@@ -1,9 +1,9 @@
 import React from 'react';
 import { DieFace } from './Die.styles';
 
-const Die = ({ number, isHeld, holdDice, id }) => {
+const Die = ({ number, isHeld, holdDice }) => {
   return (
-    <DieFace isHeld={isHeld} onClick={() => holdDice(id)}>
+    <DieFace isHeld={isHeld} onClick={holdDice}>
       <h2>{number}</h2>
     </DieFace>
   );
