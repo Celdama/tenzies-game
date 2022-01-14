@@ -28,8 +28,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .App {
     display: flex;
-    justify-content: center;
-    gap: 40px;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
     background-color: #f5f5f5;
@@ -46,15 +45,20 @@ export const GlobalStyle = createGlobalStyle`
 
     button {
       background-color: #5035FF;
-      width: 92px;
-      height: 35px;
+      width: 100px;
+      height: 50px;
       box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
       border: none;
+      margin-top: 30px;
       border-radius: 6px;
       color: #fff;
       font-family: 'Karla', sans-serif;
-      font-size: 16px;
+      font-size: 1.2rem;
       cursor: pointer;
+
+      :active {
+        box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+      }
     }
   }
 `;
