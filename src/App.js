@@ -1,5 +1,5 @@
 function App() {
-  return <div className='App'>Tenzie Game</div>;
+  return <main className='App'></main>;
 }
 
 export default App;
