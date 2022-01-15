@@ -2,10 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import Die from './components/Die';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
+import { useWindowSize } from 'react-use';
 import StopWatch from './components/StopWatch';
 import Timer from './components/Timer';
 
 function App() {
+  const StopWatchCompRef = useRef();
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [rollCount, setRollCount] = useState(0);
@@ -13,7 +15,9 @@ function App() {
     () => localStorage.getItem('best-time') || 0
   );
 
-  const StopWatchCompRef = useRef();
+  const { width, height } = useWindowSize();
+  console.log(width);
+  console.log(height);
 
   useEffect(() => {
     const allHeld = dice.every(({ isHeld }) => isHeld);
@@ -81,11 +85,15 @@ function App() {
 
   return (
     <main className='App'>
-      {tenzies && <Confetti />}
+      {tenzies && <Confetti width={width} height={height} />}
       <h1 className='title'>Tenzies</h1>
-      <span>{bestTime !== 0 ? <Timer time={bestTime} /> : 'No best time'}</span>
       <div className='game-information'>
-        {rollCount} roll{rollCount > 0 ? 's' : ''}
+        <span className='record'>
+          {bestTime !== 0 ? <Timer time={bestTime} /> : 'No best time'}
+        </span>
+        <p className='count'>
+          {rollCount} roll{rollCount > 0 ? 's' : ''}
+        </p>
         <StopWatch ref={StopWatchCompRef} bestTime={bestTime} />
       </div>
       <p className='instructions'>

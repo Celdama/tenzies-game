@@ -47,6 +47,21 @@ export const GlobalStyle = createGlobalStyle`
 
     .game-information {
       margin: 0;
+      text-align: center;
+
+      .record {
+        color: red;
+      }
+
+      .count {
+        margin: 2px;
+      }
+
+      .timer-container {
+        color: blue;
+        width: 100px;
+        height: 12px;
+      }
     }
 
     .instructions {

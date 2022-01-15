@@ -49,7 +49,7 @@ const StopWatch = forwardRef(({ bestTime }, ref) => {
   }));
 
   return (
-    <div>
+    <div className='timer-container'>
       <Timer time={time} />
     </div>
   );
