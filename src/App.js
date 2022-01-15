@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import Die from './components/Die.js';
+import Die from './components/Die';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
+import StopWatch from './components/StopWatch';
 
 function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [rollCount, setRollCount] = useState(0);
-
-  console.log(rollCount);
+  const [startTimer, setStartTimer] = useState(false);
 
   useEffect(() => {
     const allHeld = dice.every(({ isHeld }) => isHeld);
@@ -18,6 +18,7 @@ function App() {
     if (allHeld && allEqual) {
       setTenzies(true);
       console.log('You won!');
+      setStartTimer(false);
     }
   }, [dice]);
 
@@ -48,6 +49,7 @@ function App() {
           return !die.isHeld ? generateNewDie() : die;
         })
       );
+      setStartTimer(true);
     }
     setRollCount((oldRollCount) => oldRollCount + 1);
   }
@@ -73,7 +75,10 @@ function App() {
     <main className='App'>
       {tenzies && <Confetti />}
       <h1 className='title'>Tenzies</h1>
-      <p className='game-information'>{rollCount} roll</p>
+      <div className='game-information'>
+        {rollCount} roll{rollCount > 0 ? 's' : ''}
+        <StopWatch startTimer={startTimer} />
+      </div>
       <p className='instructions'>
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
