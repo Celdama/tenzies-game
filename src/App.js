@@ -1,14 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Die from './components/Die';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
 import StopWatch from './components/StopWatch';
+import Timer from './components/Timer';
 
 function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [rollCount, setRollCount] = useState(0);
-  const [startTimer, setStartTimer] = useState(false);
+  const [bestTime, setBestTime] = useState(
+    () => localStorage.getItem('best-time') || 0
+  );
+
+  const StopWatchCompRef = useRef();
 
   useEffect(() => {
     const allHeld = dice.every(({ isHeld }) => isHeld);
@@ -18,9 +23,10 @@ function App() {
     if (allHeld && allEqual) {
       setTenzies(true);
       console.log('You won!');
-      setStartTimer(false);
+      StopWatchCompRef.current.handlePause();
+      setBestTime(() => localStorage.getItem('best-time'));
     }
-  }, [dice]);
+  }, [dice, bestTime]);
 
   function generateNewDie() {
     return {
@@ -43,15 +49,17 @@ function App() {
     if (tenzies) {
       setTenzies(false);
       setDice(allNewDice());
+      setRollCount(0);
+      StopWatchCompRef.current.handleReset();
     } else {
       setDice((oldDice) =>
         oldDice.map((die) => {
           return !die.isHeld ? generateNewDie() : die;
         })
       );
-      setStartTimer(true);
+      StopWatchCompRef.current.handleStart();
+      setRollCount((oldRollCount) => oldRollCount + 1);
     }
-    setRollCount((oldRollCount) => oldRollCount + 1);
   }
 
   function holdDice(id) {
@@ -75,9 +83,10 @@ function App() {
     <main className='App'>
       {tenzies && <Confetti />}
       <h1 className='title'>Tenzies</h1>
+      <span>{bestTime !== 0 ? <Timer time={bestTime} /> : 'No best time'}</span>
       <div className='game-information'>
         {rollCount} roll{rollCount > 0 ? 's' : ''}
-        <StopWatch startTimer={startTimer} />
+        <StopWatch ref={StopWatchCompRef} bestTime={bestTime} />
       </div>
       <p className='instructions'>
         Roll until all dice are the same. Click each die to freeze it at its

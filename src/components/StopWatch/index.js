@@ -1,44 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+  useState,
+} from 'react';
 import Timer from '../Timer';
 
-const StopWatch = ({ startTimer }) => {
+const StopWatch = forwardRef(({ bestTime }, ref) => {
   const [isActive, setIsActive] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
 
   useEffect(() => {
     let interval = null;
 
-    if (startTimer) {
+    if (isActive && isPaused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 10);
       }, 10);
     } else {
       clearInterval(interval);
-      console.log('here');
-      console.log(`your time is ${time}`);
+      if (localStorage.getItem('best-time') === null && time !== 0) {
+        localStorage.setItem('best-time', time);
+      } else if (time < bestTime && time !== 0) {
+        localStorage.setItem('best-time', time);
+      }
     }
 
     return () => {
       clearInterval(interval);
     };
-  }, [startTimer]);
+  }, [isActive, isPaused, bestTime, time]);
 
-  const handleStart = () => {
-    setIsActive(true);
-  };
+  useImperativeHandle(ref, () => ({
+    handleStart() {
+      setIsActive(true);
+      setIsPaused(false);
+    },
 
-  const handleReset = () => {
-    setIsActive(false);
-    setTime(0);
-  };
+    handlePause() {
+      setIsPaused(true);
+    },
+
+    handleReset() {
+      setIsActive(false);
+      setTime(0);
+    },
+  }));
 
   return (
     <div>
       <Timer time={time} />
-
-      {/* <button onClick={handleReset}>stop</button> */}
     </div>
   );
-};
+});
 
 export default StopWatch;
