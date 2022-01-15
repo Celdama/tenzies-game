@@ -45,6 +45,10 @@ export const GlobalStyle = createGlobalStyle`
       margin: 0;
     }
 
+    .game-information {
+      margin: 0;
+    }
+
     .instructions {
       font-family: 'Inter', sans-serif;
       font-weight: 400;
