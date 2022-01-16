@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import Die from './components/Die';
-import { nanoid } from 'nanoid';
-import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
+import { nanoid } from 'nanoid';
+import Die from './components/Die';
+import Confetti from 'react-confetti';
 import StopWatch from './components/StopWatch';
 import Timer from './components/Timer';
 

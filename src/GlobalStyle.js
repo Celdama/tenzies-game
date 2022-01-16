@@ -57,11 +57,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 2px;
       }
 
-      .timer-container {
-        color: blue;
-        width: 100px;
-        height: 12px;
-      }
+
     }
 
     .instructions {

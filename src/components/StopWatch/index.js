@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { Wrapper } from './StopWatch.styles';
 import Timer from '../Timer';
 
 const StopWatch = forwardRef(({ bestTime }, ref) => {
@@ -49,9 +50,9 @@ const StopWatch = forwardRef(({ bestTime }, ref) => {
   }));
 
   return (
-    <div className='timer-container'>
+    <Wrapper className='timer-container'>
       <Timer time={time} />
-    </div>
+    </Wrapper>
   );
 });
 
