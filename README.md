@@ -1,3 +1,9 @@
+# Tenzies Game
+
+My first game will be the popular dice game, Tenzies.
+
+![preview](src/images/preview.png)
+
 # extra features to add
 
 - track the number of rolls [DONE]
